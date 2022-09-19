@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PositionBetweenDim : MonoBehaviour
+public class DimensionSwap_Template.cs : MonoBehaviour
 {
     public GameObject Bound2DObject;
     public GameObject Bound3DObject;
