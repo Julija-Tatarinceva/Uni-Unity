@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Overlord : MonoBehaviour
+public class ClockForUnityGames_Template.cs : MonoBehaviour
 {
     //1 minute IN = 1 second OUT
     //1 hour IN = 1 minute OUT
