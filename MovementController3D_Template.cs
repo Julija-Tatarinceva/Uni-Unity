@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class MovementController3D : MonoBehaviour
+public class MovementController3D_Template : MonoBehaviour
 {
     public CharacterController characterController;
     public GameObject Player;
