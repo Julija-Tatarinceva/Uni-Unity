@@ -1,15 +1,12 @@
-/* 
-Jūlija Tatarinceva, jt22005
+/* Jūlija Tatarinceva, jt22005
 C23. Dots veselu skaitļu masīvs A(n,n). Noskaidrot, vai tas ir latīņu kvadrāts. n-kārtas latīņu kvadrāts ir tāda kvadrātiska matrica,
 kuras katra rinda un katra kolonna satur visus skaitļus no 1 līdz n.
-Programma izveidota: 2022/10/03
-*/
+Programma izveidota: 2022/10/03 */
 #include <iostream>     // std::cout
 #include <algorithm>    // std::random_shuffle
 #include <vector>       // std::vector
 #include <ctime>        // std::time
 using namespace std;
-
 int main(){
   int n, i, s, k, shuffled = 0, identicalNum, redo = 1;
   char runUntil;
@@ -17,8 +14,8 @@ int main(){
   int *matrix = new int[n];
   vector<int> newVector;
   srand(time(0));
-
   do{ //cycle for restarting the entire code
+  redo = 1;
     while (true){ //cycle for checking input
       cout << "Enter number";
       cin >> n;
@@ -27,7 +24,6 @@ int main(){
     }
     cout << "Would you like the code to run until hitting a latin square? y/n";
     cin >> runUntil;
-
     for(i=0; i<n; i++) A[i] = new int[n]; //each row is a new array
     for(i=0; i<n; i++){
       for(s = 0; s<n; s++) newVector.push_back(s+1); //these values will be used for the square
@@ -60,8 +56,13 @@ int main(){
       #pragma region Output
       if(identicalNum==0){
         cout << "This is a latin square, had to shuffle " << shuffled << " times.";
-        runUntil = 't';
+        runUntil = 's';
+        shuffled = 0;
       } 
+      else if(shuffled==150){
+        runUntil = 's';
+        cout << "Shuffled 150 times. Stopped to avoid endless loop.";
+      }
       else{
         cout << "Not a latin square, has " << identicalNum/2 << " instances of repeating" << endl;
         shuffled++;
@@ -73,8 +74,7 @@ int main(){
       #pragma endregion
     }while (redo==1);
   }while (redo==2);
-}
-/*              Testa plāns
+}/*              Testa plāns
  _____________________________________________________________
  |Ievads|  Rezultāts                   |Vai pareizs rezultāts?|
  -------|------------------------------|----------------------|
