@@ -7,29 +7,14 @@ Programma izveidota: 2022/10/03 */
 #include <vector>       // std::vector
 #include <ctime>        // std::time
 using namespace std;
-int main(){
   int n, i, s, k, shuffled = 0, identicalNum, redo = 1;
   char runUntil;
   int **A = new int*[n];
   int *preA = new int[n];
   vector<int> newVector;
+int Shuffler(){
   srand(time(0));
-  do{ //cycle for restarting the entire code
-    redo = 1;
-    while (true){ //cycle for checking input
-      cout << "Enter number";
-      cin >> n;
-      if(n>1) break;
-      else cout << "Can't create a proper square.";
-    }
-    cout << "Would you like the code to run until hitting a latin square? y/n";
-    cin >> runUntil;
-    for(i=0; i<n; i++) A[i] = new int[n]; //each row is a new array
-    newVector.clear();
-    for(i=0; i<n; i++){
-      for(s = 0; s<n; s++) newVector.push_back(s+1); //these values will be used for the square
-    }
-    do{
+      do{
       identicalNum = 0;
       random_shuffle (newVector.begin(), newVector.end()); //attempt to randomly  create a latin square
       copy(newVector.begin(), newVector.end(), preA); //1d array is easy co convert to 2d array
@@ -75,6 +60,25 @@ int main(){
       }
       #pragma endregion
     }while (redo==1);
+  return(0);
+}
+int main(){
+  do{ //cycle for restarting the entire code
+    redo = 1;
+    while (true){ //cycle for checking input
+      cout << "Enter number";
+      cin >> n;
+      if(n>1) break;
+      else cout << "Can't create a proper square.";
+    }
+    cout << "Would you like the code to run until hitting a latin square? y/n";
+    cin >> runUntil;
+    for(i=0; i<n; i++) A[i] = new int[n]; //each row is a new array
+    newVector.clear();
+    for(i=0; i<n; i++){
+      for(s = 0; s<n; s++) newVector.push_back(s+1); //these values will be used for the square
+    }
+    Shuffler();
   }while (redo==2);
   delete [] A;
   delete [] preA;
