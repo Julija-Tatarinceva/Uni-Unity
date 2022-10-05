@@ -11,14 +11,14 @@ int main()
 {
     int n, redo;
     do{
-        bool isPrime = true;
+        bool isPrime = true; //changes to False if a factor is found, will stay True otherwise
         cout << "Please enter a natural number \n";
         cin >> n;
         if(n<2){
             cout << "Prime numbers are greater that 1 \n";
         }
         else{
-            for (int i = 3; i < n; i++){
+            for (int i = 3; i < n; i++){ //searching for factors between 2 and n
                 if((n%i) == 0){
                     isPrime = false;
                     break;
