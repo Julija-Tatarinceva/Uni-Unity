@@ -1,3 +1,8 @@
+/* Uzrakstīt programmu, kas saskaita vārdu lietojuma biežumu failā, izmantojot bināru meklēšanas koku,
+kura mezglos glabājas vārds un tā sastapšanas biežums. Izdrukāt failā sastaptos vārdus alfabētiskā secībā
+un to lietojuma biežumu. Par vārdu uzskatīt simbolu virkni, kas sastāv no latīņu alfabēta burtiem.
+Jūlija Tatarinceva jt22005 */
+
 #include <iostream>
 #include <string>
 #include <strings.h>
@@ -37,17 +42,13 @@ bool Searchh(Node* root, char *data){
 
 bool printAll(Node* root){
     if(root->left != NULL){
-            printAll(root->left);
-            cout<<root->data<<"("<<root->biezums<<"), ";
-            if(root->right !=NULL){
-            printAll(root->right);
-        }
+            printAll(root->left); // kad šī rinda beidz izpildīties, visi kreisie no šī punkta mezgli būs izdrukāti
+            cout<<root->data<<"("<<root->biezums<<"), "; //tikai kad visi kriesie ir izdrukāti, var izdrukāt arī šo
+            if(root->right !=NULL) printAll(root->right); //kad ir izdrukāts viss no krieisas puses un pats mezgls, var drukāt visu kas ir labāk no tā
     }
     else if(root->left == NULL){
         cout<<root->data<<"("<<root->biezums<<"), ";
-        if(root->right !=NULL){
-            printAll(root->right);
-        }
+        if(root->right !=NULL) printAll(root->right);
     }
     return false;
 }
@@ -55,24 +56,31 @@ bool printAll(Node* root){
 int main(){
     fstream file;
     char *lookfor;
+    int notAWord = 0;
     Node* root = 0;
     file.open("tpoint.txt",ios::in);
     string tp;
     vector<string> dats;
-
-    int i = 0;
-    while(getline(file, tp, ' ')){
-         dats.push_back(tp);
-    }
+    while(getline(file, tp, ' ')) dats.push_back(tp);
     file.close();
-    for(i=0;i<dats.size();i++){
-            if(dats[i][0]>64 && dats[i][0]<90) dats[i][0]=dats[i][0]+32;
-            if(dats[i][dats[i].length() - 1]==44 || dats[i][dats[i].length() - 1]==33 ||
-               dats[i][dats[i].length() - 1]==46 || dats[i][dats[i].length() - 1]==68 ||
-               dats[i][dats[i].length() - 1]==59 || dats[i][dats[i].length() - 1]=='('||
-               dats[i][dats[i].length() - 1]==')'|| dats[i][dats[i].length() - 1]=='['||
-               dats[i][dats[i].length() - 1]==']'|| dats[i][dats[i].length() - 1]=='?') dats[i].pop_back();
-            root = Insert(root,(char*)dats[i].c_str());
+    for(int i=0;i<dats.size();i++){
+        for(int j=0;j<dats[i].size(); j++){
+            if(dats[i][j]>64 && dats[i][j]<90) dats[i][j]=dats[i][j]+32; //A = a, cits burtu lielums != cits vārds
+            if(dats[i][dats[i].length() - 1]==44 || dats[i][dats[i].length() - 1]==33 ||     //ja ar šo vārdu beidzas teikums un pēc tā seko '!',
+               dats[i][dats[i].length() - 1]==46 || dats[i][dats[i].length() - 1]==58 ||     //'.' vai cits līdzīgs simbols, tad to vajadzēs ignorēt.
+               dats[i][dats[i].length() - 1]==59 || dats[i][dats[i].length() - 1]=='?') dats[i].pop_back();
+            if(dats[i][j]<65 || (dats[i][j]>90&&dats[i][j]<97)||dats[i][j]>122){ //vārds satur tikai ASCII burtus
+                notAWord++;
+                if(i<dats.size()-1) i++;
+                else{
+                    cout<<"Printing everything in alfabetical order:"<<endl;
+                    printAll(root);
+                    return 1; //
+                }
+                j=0;
+            }
+        }
+        root = Insert(root,(char*)dats[i].c_str());
     }
     cout<<"Printing everything in alfabetical order:"<<endl;
     printAll(root);
@@ -81,4 +89,5 @@ int main(){
         cin>>lookfor;
         cout<<endl<<Searchh(root, lookfor);
     }
+    return 1;
 }
