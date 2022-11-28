@@ -1,4 +1,4 @@
-/* Uzrakstīt programmu, kas saskaita vārdu lietojuma biežumu failā, izmantojot bināru meklēšanas koku,
+/* Uzdevums 21.: uzrakstīt programmu, kas saskaita vārdu lietojuma biežumu failā, izmantojot bināru meklēšanas koku,
 kura mezglos glabājas vārds un tā sastapšanas biežums. Izdrukāt failā sastaptos vārdus alfabētiskā secībā
 un to lietojuma biežumu. Par vārdu uzskatīt simbolu virkni, kas sastāv no latīņu alfabēta burtiem.
 Jūlija Tatarinceva jt22005 */
