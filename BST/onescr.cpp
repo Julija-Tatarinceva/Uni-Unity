@@ -91,3 +91,10 @@ int main(){
     }
     return 1;
 }
+/* Test
+
+Ievads:
+Winter is coming. Hear Me Roar! Fire and Blood. We Do Not Sow. Ours is the Fury. Why is fire not coming?
+Rezultāts:
+Result: and(1), blood(1), coming(2), do(1), fire(2), fury(1), hear(1), is(3), me(1), not(2), ours(1), roar(1), sow(1), the(1), we(1), why(1), winter(1)
+*/
