@@ -27,15 +27,7 @@ public class MovementController3D_Template : MonoBehaviour
     {
         CinemachineCore.GetInputAxis = GetAxisCustom;
     }
-    public float GetAxisCustom(string axisName)
-    {
-        if (axisName == "Mouse X")
-        {
-            if (Input.GetMouseButton(1)) return UnityEngine.Input.GetAxis("Mouse X");
-            else return 0;
-        }
-        return UnityEngine.Input.GetAxis(axisName);
-    }
+    public float GetAxisCustom(string axisName) return UnityEngine.Input.GetAxis(axisName);
 
     void Update(){
         Player.transform.position = new Vector3(Player.transform.position.x, heightToKeep.y, Player.transform.position.z);
