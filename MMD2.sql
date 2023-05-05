@@ -76,7 +76,7 @@ SELECT  Movie.MovieName, Viewer.name, comment, likes FROM Comment
  --rezultats ir apvienots ar tabulu "Movie" tur, kur "id" no "Movie" sakrit ar "movie_id" no pirmaja rezultata.
  --Tiek paraditi tikai ieraksti, kur komentara teksts satur vardu "good" jebkura pozicija.
  
-SELECT COUNT(comment) AS AmountOfComments, SUM(likes) AS LikesTotal, viewer_id FROM Comment
+SELECT COUNT(*) AS AmountOfComments, SUM(likes) AS LikesTotal, viewer_id FROM Comment
 WHERE comment NOT LIKE '%*%'
 GROUP BY viewer_id
 HAVING COUNT(comment)>2
