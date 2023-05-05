@@ -96,5 +96,5 @@ FROM Viewer
 --Katram skatītājasm tiek parādīts vārds un uzrakstītu komentāru skaits
 
 SELECT * FROM Comment
-WHERE likes > (SELECT AVG(likes) FROM Comment)
---Tiek parādīti komentāri, kuri saņema vairāk "laiku" nekā vidēji saņema visi komentāri.
+WHERE likes = (SELECT MIN(likes) FROM Comment)
+--Tiek parādīti komentāri, kuri saņema vismazāk "laiku".
