@@ -71,20 +71,18 @@ SELECT  Movie.MovieName, Viewer.name, comment, likes FROM Comment
   JOIN Movie ON Movie.id = Comment.movie_id
   WHERE comment LIKE '%good%'
   ORDER BY Movie.MovieName, Viewer.name, Comment.id; 
- --Tiek iegutas 4 kolonnas "MovieName", "name", "comment" un "likes" no 3 dazadam tabulam, 
- --tabulas "Comment" un "Viewer" tiek apvienotas tur, kur lauks "id" no "Viewer" sakrit ar lauku "viewer_id" no "Comment", 
- --rezultats ir apvienots ar tabulu "Movie" tur, kur "id" no "Movie" sakrit ar "movie_id" no pirmaja rezultata.
- --Tiek paraditi tikai ieraksti, kur komentara teksts satur vardu "good" jebkura pozicija.
+ --Komentāri tiek apvienoti ar to autoriem un filmam, kuriem tie ir rakstītas.
+ --Tiek attēloti tikai ieraksti, kur komentāra teksts satur vardu "good" jebkurā pozīcijā.
+ --Tiek parādīts filma nosaukums, skatītāja vārds, komentārs un "laiki". 
  
 SELECT COUNT(*) AS AmountOfComments, SUM(likes) AS LikesTotal, viewer_id FROM Comment
 WHERE comment NOT LIKE '%*%'
 GROUP BY viewer_id
 HAVING COUNT(comment)>2
 ORDER BY AmountOfComments DESC, LikesTotal DESC;
---Tiek saskaitītas "comment" rindiņas, kuri nesatur simbolu "*", sasummeti "likes" lauku vērtības,
---rezultāts ir sagrupēts pēc komantāru autoru profiliem ("viewer_id").
+--Tiek saskaitīti komentāri, kuri nesatur simbolu "*" un sagrupēti pēc komantāru autoriem.
 --Tiek attēloti ieraksti, kur pēc saskaitīšanas komentāru skaits ir > 2.
---Rezultāti tiek sakārtoti pec komentāru skaita un laiku summas.
+--Rezultāts tiek sakārtots pec komentāru skaita un "laiku" summas.
 
 SELECT COUNT(*) AS AmountOfComments, movie_id, Viewer.female FROM Comment
 JOIN Viewer on viewer_id=Viewer.id
@@ -96,3 +94,7 @@ ORDER BY movie_id
 SELECT name AS ViewerName, (SELECT COUNT(*) FROM Comment WHERE viewer_id = Viewer.ID) AS AmountOfComments
 FROM Viewer
 --Katram skatītājasm tiek parādīts vārds un uzrakstītu komentāru skaits
+
+SELECT * FROM Comment
+WHERE likes > (SELECT AVG(likes) FROM Comment)
+--Tiek parādīti komentāri, kuri saņema vairāk "laiku" nekā vidēji saņema visi komentāri.
