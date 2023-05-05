@@ -93,3 +93,6 @@ ORDER BY movie_id
 --Komentāru skaits tiek sagrupēts pēc filmas id un skatītāju dzimuma, katrai grupai tiek paradīts komentāru skaits.
 --Rezultāts tiek sakārtots pēc filmas id.
 
+SELECT name AS ViewerName, (SELECT COUNT(*) FROM Comment WHERE viewer_id = Viewer.ID) AS AmountOfComments
+FROM Viewer
+--Katram skatītājasm tiek parādīts vārds un uzrakstītu komentāru skaits
