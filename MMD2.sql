@@ -85,3 +85,11 @@ ORDER BY AmountOfComments DESC, LikesTotal DESC;
 --rezultāts ir sagrupēts pēc komantāru autoru profiliem ("viewer_id").
 --Tiek attēloti ieraksti, kur pēc saskaitīšanas komentāru skaits ir > 2.
 --Rezultāti tiek sakārtoti pec komentāru skaita un laiku summas.
+
+SELECT COUNT(*) AS AmountOfComments, movie_id, Viewer.female FROM Comment
+JOIN Viewer on viewer_id=Viewer.id
+GROUP BY movie_id, Viewer.female
+ORDER BY movie_id
+--Komentāru skaits tiek sagrupēts pēc filmas id un skatītāju dzimuma, katrai grupai tiek paradīts komentāru skaits.
+--Rezultāts tiek sakārtots pēc filmas id.
+
