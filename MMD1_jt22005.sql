@@ -32,9 +32,9 @@ insert into Viewer(ID, name, female, age) values
 
 INSERT into Movie(MovieName, family_friendly, genre) values 
 ('Pub Hole', 0, 'Fantasy'),
-('The Mechanism', 1, 'Science Fiction'),
-('Lab 101', 0, 'Action'),
-('Bunker of the Union',1, 'Horror'),
+('The Mechanism', 1, 'Fantasy'),
+('Lab 101', 0, 'Drama'),
+('Bunker of the Union',1, 'Drama'),
 ('Safe Mile', 1, 'Drama');
 
 INSERT into Comment(comment, likes, viewer_id, movie_id) values 
