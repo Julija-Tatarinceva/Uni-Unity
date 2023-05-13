@@ -98,3 +98,10 @@ FROM Viewer
 SELECT * FROM Comment
 WHERE likes = (SELECT MIN(likes) FROM Comment)
 --Tiek parādīti komentāri, kuri saņema vismazāk "laiku".
+
+DELETE FROM Comment;
+DELETE FROM Movie;
+DELETE FROM Viewer;
+DROP TABLE Comment;
+DROP TABLE Movie;
+DROP TABLE Viewer;
