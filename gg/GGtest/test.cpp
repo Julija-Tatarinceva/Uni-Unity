@@ -4,30 +4,23 @@
 #include <sstream>
 #include <cstring>
 using namespace std;
-//#include "G19-list.cpp"
 #include "../GGmain/G19-vienvirziena_saistits_saraksts.cpp"
-//#include "G19-vienvirziena_saistits_saraksts.cpp"
 
-void Test(std::istream& input_stream){
-    string a;
-    input_stream>>a;
-    cout<<a;
-}
-
-//pārbaudes, vai funkcija nostrādās ar tukšo sarakstu
-void test_A(std::istream& istream) {
+//pārbauda, vai funkcija nostrādās ar tukšo sarakstu
+void test_A() {
     elem* test = NULL;
     try {
         RemoveBeforeEvenElements(test, test);
     } catch (int issue) {
         if (issue != -1) {
-            cout << "Test_A failed." << endl;
+            cout << "Test_A failed (tukss saraksts)." << endl;
         } else {
-            cout << "Test_A passed." << endl;
+            cout << "Test_A passed (tukss saraksts)." << endl;
         }
     }
 }
-//trīs testi uz to, kas notiks ar tukšo sarakstu, ar normālu pilnu sarakstu un ar vienu elementu sarakstā
+
+//tests ar vienu elementu sarakstā, tiek parbaudīts, vai elements izmainās
 void test_B() {
     elem* last;
     elem* first;
@@ -36,10 +29,11 @@ void test_B() {
     test->next = NULL;
     first=last=test;
     RemoveBeforeEvenElements(test, test);
-    if(first->num==1 && first->next == NULL) cout << "Test_B passed." << endl;
-    else cout << "Test_B failed." << endl;
+    if(first->num==1 && first->next == NULL) cout << "Test_B passed (1 elements sarakstaa)." << endl;
+    else cout << "Test_B failed (1 elements sarakstaa)." << endl;
 }
 
+//tests ar sarakstu no 6 elementiem, tiek parbaudīts, vai funkcija pareizi izmet elementus, tieši aiz kuriem seko pāra skaitlis
 void test_C() {
     int test_input[6] = {2, 3, 4, 6, 7, 9};
     int test_output[4] = {2, 6, 7, 9};
@@ -63,19 +57,19 @@ void test_C() {
     elem* i;
     for(i=first; i; i=i->next){
         if (i->num != test_output[j]){
-            cout << "Test_C failed." << endl;
+            cout << "Test_C failed (vairaaki elementi sarakstaa)." << endl;
             err = true;
             break;
         }
         else j++;
     }
-    if (!err) cout << "Test_C passed." << endl;
+    if (!err) cout << "Test_C passed (vairaaki elementi sarakstaa)." << endl;
 }
 
 int main(){
-    istringstream test1("0"), test2("1 0");
-    cout << "Hello! Sending shit.";
-    test_A(test1);
+    cout << "Ruupiigi testeejam..."<<endl;
+    test_A();
     test_B();
     test_C();
+    cout << "Testeesana pabeigta!"<<endl;   
 }
