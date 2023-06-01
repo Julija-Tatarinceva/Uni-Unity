@@ -73,17 +73,3 @@ elem* CreateList(std::istream& input_stream){ //input stream, lai šo funkciju a
     cout<<"removing";
     return first;
 }
-/*
-int main(){
-    int redo;
-    elem* firstOfTheList;
-    do{ //cikls koda atkārtošanai
-        do{
-        firstOfTheList = CreateList(cin);
-        }while(!firstOfTheList);
-        RemoveBeforeEvenElements(firstOfTheList, firstOfTheList);
-        PrintList(firstOfTheList);
-        cout<<endl<<"Turpinaat(nenulles ievads) vai beigt(0)?"<<endl;
-        cin>>redo;
-    }while(redo);
-}*/
