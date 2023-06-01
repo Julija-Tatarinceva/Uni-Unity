@@ -1,5 +1,5 @@
 /* Jūlija Tatarinceva, jt22005
-G19. Uzrakstīt funkciju, kas no saraksta izmet tos elementus, 
+GG. Uzrakstīt funkciju, kas no saraksta izmet tos elementus, 
 tieši aiz kuriem sarakstā seko elementi, kuru vērtība ir pāra skaitlis.
 Programma izveidota: 2023/05/22 */
 
